@@ -23,7 +23,20 @@ rejected at the login screen.
 
 Dev requests proxy `/api` → `http://127.0.0.1:8000`, so no CORS setup is needed
 locally. For a deployed panel set `VITE_API_URL` to the full API base, e.g.
-`https://api.dadanumerology.com/api/v1`.
+`https://dada-numerology-api.onrender.com/api/v1`.
+
+## Deploying
+
+`render.yaml` is a Render Blueprint: **New → Blueprint → this repo → Apply**, then set
+`VITE_API_URL`. It builds with `npm ci && npm run build` and publishes `dist`, with a
+rewrite so deep links survive a refresh.
+
+`VITE_API_URL` is compiled into the bundle, so changing it later needs
+**Manual Deploy → Clear build cache & deploy**. Remember to add this site's URL to the
+API's `CORS_ORIGINS_RAW`.
+
+The full walkthrough lives in the backend repo:
+[DEPLOY.md](https://github.com/ulmind-com/DADA-NAMEROLOGY-Backend/blob/main/DEPLOY.md).
 
 ## Pages
 
