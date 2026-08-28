@@ -44,6 +44,7 @@ export type ReportRow = {
   title: string;
   subtitle: string;
   score: number | null;
+  pdf_url?: string | null;
   created_at: string;
   user_email: string | null;
   user_name: string | null;

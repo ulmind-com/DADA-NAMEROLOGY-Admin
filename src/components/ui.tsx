@@ -74,6 +74,36 @@ export function Stat({
   );
 }
 
+export function Avatar({
+  url,
+  name,
+  email,
+  size = 32,
+}: {
+  url?: string | null;
+  name?: string;
+  email?: string;
+  size?: number;
+}) {
+  const letter = (name?.trim() || email || 'U').charAt(0).toUpperCase();
+  if (url) {
+    return (
+      <img
+        src={url}
+        alt=""
+        className="avatar-img"
+        style={{ width: size, height: size }}
+        loading="lazy"
+      />
+    );
+  }
+  return (
+    <span className="who-av" style={{ width: size, height: size, fontSize: size * 0.4 }}>
+      {letter}
+    </span>
+  );
+}
+
 export function Pill({
   children,
   tone = 'muted',

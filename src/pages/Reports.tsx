@@ -107,7 +107,10 @@ export default function Reports() {
                       <div className="cell-sub">{r.user_email || 'anonymous'}</div>
                     </td>
                     <td>
-                      <Pill tone={r.tier === 'premium' ? 'good' : 'muted'}>{r.tier}</Pill>
+                      <span className="row" style={{ gap: 5 }}>
+                        <Pill tone={r.tier === 'premium' ? 'good' : 'muted'}>{r.tier}</Pill>
+                        {!!r.pdf_url && <Pill tone="info">shared</Pill>}
+                      </span>
                     </td>
                     <td className="mono">{r.score ?? '—'}</td>
                     <td className="tiny">{fmtDateTime(r.created_at)}</td>

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Card, CardHead, Empty, KV, Pill, Spinner, Toggle } from '@/components/ui';
+import { Avatar, Card, CardHead, Empty, KV, Pill, Spinner, Toggle } from '@/components/ui';
 import { IconBack } from '@/components/Icons';
 import { del, get, patch } from '@/lib/api';
-import { fmtDate, fmtDateTime, initials, TYPE_LABEL } from '@/lib/format';
+import { fmtDate, fmtDateTime, TYPE_LABEL } from '@/lib/format';
 import { useSession } from '@/lib/session';
 import { useToast } from '@/lib/toast';
 import type { AdminUser } from '@/lib/types';
@@ -56,9 +56,7 @@ export default function UserDetail() {
       <div className="grid g2" style={{ gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.35fr)' }}>
         <Card pad>
           <div className="row" style={{ gap: 14 }}>
-            <div className="who-av" style={{ width: 54, height: 54, fontSize: 20 }}>
-              {initials(u.full_name, u.email)}
-            </div>
+            <Avatar url={u.avatar_url} name={u.full_name} email={u.email} size={54} />
             <div style={{ minWidth: 0 }}>
               <h2>{u.full_name || '—'}</h2>
               <p className="small muted">{u.email}</p>

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Card, Empty, Pagination, Pill, Search, Spinner, Toggle } from '@/components/ui';
+import { Avatar, Card, Empty, Pagination, Pill, Search, Spinner, Toggle } from '@/components/ui';
 import { get, patch } from '@/lib/api';
-import { fmtDate, fmtRelative, initials } from '@/lib/format';
+import { fmtDate, fmtRelative } from '@/lib/format';
 import { useToast } from '@/lib/toast';
 import type { AdminUser, Paged } from '@/lib/types';
 
@@ -96,9 +96,7 @@ export default function Users() {
                   <tr key={u.id}>
                     <td>
                       <Link to={`/users/${u.id}`} className="row" style={{ gap: 11 }}>
-                        <span className="who-av" style={{ width: 32, height: 32, fontSize: 12 }}>
-                          {initials(u.full_name, u.email)}
-                        </span>
+                        <Avatar url={u.avatar_url} name={u.full_name} email={u.email} />
                         <span>
                           <span className="cell-strong" style={{ display: 'block' }}>
                             {u.full_name || '—'}

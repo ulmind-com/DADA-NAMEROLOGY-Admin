@@ -17,6 +17,7 @@ type Detail = {
   payload: Record<string, unknown>;
   result: any;
   created_at: string;
+  pdf_url?: string | null;
   user: { id: string; email: string; full_name: string } | null;
 };
 
@@ -74,6 +75,16 @@ export default function ReportDetail() {
                 />
               )}
               <KV k="Generated" v={fmtDateTime(data.created_at)} />
+              {!!data.pdf_url && (
+                <KV
+                  k="Archived PDF"
+                  v={
+                    <a href={data.pdf_url} target="_blank" rel="noreferrer" style={{ color: 'var(--brand)' }}>
+                      Cloudinary copy
+                    </a>
+                  }
+                />
+              )}
               {r.compound !== undefined && <KV k="Compound" v={r.compound} />}
               {r.total !== undefined && <KV k="Total" v={r.total} />}
               {r.score !== undefined && <KV k="Score" v={`${r.score}%`} />}
